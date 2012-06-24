@@ -55,6 +55,7 @@
     <Compile Include="IReactiveAzureFactory.cs" />
     <Compile Include="ITypedQueueMessage.cs" />
     <Compile Include="ManualResetTimer.cs" />
+    <Compile Include="ReactiveAzureFactory.cs" />
     <Compile Include="SubscriberControlledObservable.cs" />
     <Compile Include="XmlMessageDeserializer.cs" />
     <Compile Include="XmlMessageSerializer.cs" />
