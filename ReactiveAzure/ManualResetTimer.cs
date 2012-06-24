@@ -22,8 +22,14 @@ namespace ReactiveAzure
             var handler = OnElapsed;
             if(handler != null)
             {
-                var eventArgs = new ResetEventArgs(_timer);
+                var eventArgs = new ResetEventArgs(_timer.Start);
                 handler(this, eventArgs);
+            }
+            else
+            {
+                //There are no event handlers.
+                //So we are the only ones that know to reset the timer.
+                _timer.Start();
             }
         }
     }

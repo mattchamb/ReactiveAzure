@@ -4,7 +4,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace ReactiveAzure
 {
-    public class MessageDeserializer<T> : IMessageDeserializer<T>
+    public class XmlMessageDeserializer<T> : IMessageDeserializer<T>
     {
         public T DeserializeMessage(CloudQueueMessage message)
         {

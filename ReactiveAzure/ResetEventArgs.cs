@@ -1,20 +1,21 @@
 using System;
-using System.Timers;
 
 namespace ReactiveAzure
 {
     public class ResetEventArgs: EventArgs
     {
-        private readonly Timer _timer;
+        private readonly Action _reset;
 
-        public ResetEventArgs(Timer timer)
+        public ResetEventArgs(Action reset)
         {
-            _timer = timer;
+            if (reset == null) 
+                throw new ArgumentNullException("reset");
+            _reset = reset;
         }
 
         public void Reset()
         {
-            _timer.Start();
+            _reset();
         }
     }
 }

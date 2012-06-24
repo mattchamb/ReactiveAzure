@@ -3,50 +3,31 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace ReactiveAzure
 {
-    public class TypedQueueMessage<T> : ITypedQueueMessage<T> 
+    public class TypedQueueMessage<T> : CloudQueueMessage, ITypedQueueMessage<T>
     {
-        private readonly CloudQueueMessage _message;
         private readonly IMessageDeserializer<T> _messageDeserializer;
 
-        public TypedQueueMessage(CloudQueueMessage message, IMessageDeserializer<T> messageDeserializer)
+        public TypedQueueMessage(IMessageDeserializer<T> messageDeserializer, string contents) 
+            : base(contents)
         {
-            _message = message;
             _messageDeserializer = messageDeserializer;
+        }
+
+        public TypedQueueMessage(IMessageDeserializer<T> messageDeserializer, CloudQueueMessage originalMessage)
+            : this(messageDeserializer, originalMessage.AsString)
+        {
+            //Perform a memberwise copy of the original message properties.
+            DequeueCount = originalMessage.DequeueCount;
+            ExpirationTime = originalMessage.ExpirationTime;
+            Id = originalMessage.Id;
+            InsertionTime = originalMessage.InsertionTime;
+            NextVisibleTime = originalMessage.NextVisibleTime;
+            PopReceipt = originalMessage.PopReceipt;
         }
 
         public T GetValue()
         {
-            return _messageDeserializer.DeserializeMessage(_message);
-        }
-
-        public string Id
-        {
-            get { return _message.Id; }
-        }
-
-        public string PopReceipt
-        {
-            get { return _message.PopReceipt; }
-        }
-
-        public DateTime? InsertionTime
-        {
-            get { return _message.InsertionTime; }
-        }
-
-        public DateTime? ExpirationTime
-        {
-            get { return _message.ExpirationTime; }
-        }
-
-        public DateTime? NextVisibleTime
-        {
-            get { return _message.NextVisibleTime; }
-        }
-
-        public int DequeueCount
-        {
-            get { return _message.DequeueCount; }
+            return _messageDeserializer.DeserializeMessage(this);
         }
     }
 }

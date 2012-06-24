@@ -18,7 +18,7 @@ namespace ReactiveAzure
             var message = _cloudQueue.GetMessage();
             if (message == null)
                 return null;
-            return new TypedQueueMessage<T>(message, _messageDeserializer);
+            return new TypedQueueMessage<T>(_messageDeserializer, message);
         }
     }
 }

@@ -1,4 +1,6 @@
 
+packages/**/lib/
+
 #################
 ## Eclipse
 #################
@@ -64,6 +66,7 @@ local.properties
 *.vspscc
 .builds
 **/*.dotCover
+*.dotCover
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #**/packages/ 
@@ -99,6 +102,7 @@ DocProject/Help/html
 publish
 
 # Others
+csx
 [Bb]in
 [Oo]bj
 sql

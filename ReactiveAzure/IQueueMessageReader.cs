@@ -1,6 +1,6 @@
 namespace ReactiveAzure
 {
-    public interface IQueueMessageReader<T>
+    public interface IQueueMessageReader<out T>
     {
         ITypedQueueMessage<T> GetMessage();
     }
