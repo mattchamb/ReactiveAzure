@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "ReactiveAzureTest", "ReactiveAzureTest\ReactiveAzureTest.ccproj", "{7C3A1281-E49F-4375-838D-439DE2FDB9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerRoleTest", "WorkerRoleTest\WorkerRoleTest.csproj", "{1EE55586-517E-412E-933A-1F9ADF9D5BB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceRoleTest", "ServiceRoleTest\ServiceRoleTest.csproj", "{D93B3A71-EFB1-41B6-972F-B7026F4078A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveAzure", "ReactiveAzure\ReactiveAzure.csproj", "{80629970-DB15-466E-8D12-DBE81EA442BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveAzure.Tests", "ReactiveAzure.Tests\ReactiveAzure.Tests.csproj", "{EFD98FFB-2CB7-4C1C-BC8F-AACD6F5E83F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C3A1281-E49F-4375-838D-439DE2FDB9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3A1281-E49F-4375-838D-439DE2FDB9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3A1281-E49F-4375-838D-439DE2FDB9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3A1281-E49F-4375-838D-439DE2FDB9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE55586-517E-412E-933A-1F9ADF9D5BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE55586-517E-412E-933A-1F9ADF9D5BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE55586-517E-412E-933A-1F9ADF9D5BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE55586-517E-412E-933A-1F9ADF9D5BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D93B3A71-EFB1-41B6-972F-B7026F4078A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93B3A71-EFB1-41B6-972F-B7026F4078A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93B3A71-EFB1-41B6-972F-B7026F4078A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93B3A71-EFB1-41B6-972F-B7026F4078A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80629970-DB15-466E-8D12-DBE81EA442BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80629970-DB15-466E-8D12-DBE81EA442BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80629970-DB15-466E-8D12-DBE81EA442BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80629970-DB15-466E-8D12-DBE81EA442BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD98FFB-2CB7-4C1C-BC8F-AACD6F5E83F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD98FFB-2CB7-4C1C-BC8F-AACD6F5E83F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD98FFB-2CB7-4C1C-BC8F-AACD6F5E83F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD98FFB-2CB7-4C1C-BC8F-AACD6F5E83F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
