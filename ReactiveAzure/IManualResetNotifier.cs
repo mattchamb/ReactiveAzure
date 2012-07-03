@@ -2,7 +2,7 @@ using System;
 
 namespace ReactiveAzure
 {
-    public interface IManualResetNotifier
+    internal interface IManualResetNotifier
     {
         event EventHandler<ResetEventArgs> OnElapsed;
     }

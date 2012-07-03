@@ -12,10 +12,11 @@ namespace ReactiveAzure.Tests
     [TestFixture]
     public class ReactiveAzureTests
     {
+
         [Test]
         public void MessageReceived_OnNotificationWithNotificationsEnabled_ReadsValueFromQueue()
         {
-            var expected = new TestMessage() {IntegerProperty = 123, StringProperty = "TEST"};
+            /*var expected = new TestMessage() {IntegerProperty = 123, StringProperty = "TEST"};
 
             var queueMessageMock = new Mock<ITypedQueueMessage<TestMessage>>();
             queueMessageMock.Setup(mock => mock.GetValue()).Returns(expected);
@@ -32,13 +33,14 @@ namespace ReactiveAzure.Tests
 
             testNotifier.ForceElapse();
 
-            Assert.AreSame(expected, result);
+            Assert.AreSame(expected, result);*/
+            Assert.Fail("Fix this test after refactoring.");
         }
 
         [Test]
         public void MessageReceived_OnNotificationWithNotificationsDisabled_DoesntReadValueFromQueue()
         {
-            var expected = new TestMessage() { IntegerProperty = 123, StringProperty = "TEST" };
+            /*var expected = new TestMessage() { IntegerProperty = 123, StringProperty = "TEST" };
 
             var queueMessageMock = new Mock<ITypedQueueMessage<TestMessage>>();
             queueMessageMock.Setup(mock => mock.GetValue()).Returns(expected);
@@ -55,14 +57,8 @@ namespace ReactiveAzure.Tests
 
             testNotifier.ForceElapse();
 
-            Assert.AreEqual(0, callCount);
-        }
-
-        [Test]
-        public void Asdasd()
-        {
-            var observable = ReactiveAzure<TestMessage>.Factory.CreateObservable(TimeSpan.FromSeconds(1), null);
-
+            Assert.AreEqual(0, callCount);*/
+            Assert.Fail("Fix this test after refactoring.");
         }
     }
 }

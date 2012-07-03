@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.WindowsAzure.StorageClient;
 using NUnit.Framework;
 
 namespace ReactiveAzure.Tests
@@ -17,11 +18,8 @@ namespace ReactiveAzure.Tests
                                            "<StringProperty>TestMessage</StringProperty>" +
                                            "</TestMessage>";
             var deserializer = new XmlMessageDeserializer<TestMessage>();
-            //This is a kind of funny circular dependency - need a TypedQueueMessage to read from, and
-            // a MessageDeserializer needs to take a QueueMessage for deserializing.
-            var typedMessage = new TypedQueueMessage<TestMessage>(deserializer, messageContents);
-            
-            var result = typedMessage.GetValue();
+
+            var result = deserializer.DeserializeMessage(new CloudQueueMessage(messageContents));
 
             Assert.AreEqual("TestMessage", result.StringProperty);
             Assert.AreEqual(123, result.IntegerProperty);

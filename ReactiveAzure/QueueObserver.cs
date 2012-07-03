@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReactiveAzure
 {
-    public delegate void MessageReceivedHandler<in TMessage>(ITypedQueueMessage<TMessage> message);
-
-    public class ReactiveAzure<TMessage> where TMessage : class
+    /// <summary>
+    /// This is the main class of this library.
+    /// <para>
+    /// 
+    /// </para>
+    /// </summary>
+    /// <typeparam name="TMessage"></typeparam>
+    public class QueueObserver<TMessage> where TMessage : class
     {
-        private static readonly IReactiveAzureFactory<TMessage> s_Factory = new ReactiveAzureFactory<TMessage>();
-        public static IReactiveAzureFactory<TMessage> Factory
+        private static readonly IQueueObserverFactory<TMessage> s_Factory = new QueueObserverFactory<TMessage>();
+        /// <summary>
+        /// A factory to handle the initialization of the QueueObserver instances.
+        /// </summary>
+        /// <remarks>Stole this way of having the factory from Task.Factory</remarks>
+        public static IQueueObserverFactory<TMessage> Factory
         {
             get { return s_Factory; }
         }
@@ -22,7 +27,7 @@ namespace ReactiveAzure
         private volatile bool _sendNotifications;
         internal event MessageReceivedHandler<TMessage> MessageReceived;
 
-        internal ReactiveAzure(IManualResetNotifier resetNotifier, IQueueMessageReader<TMessage> messageReader)
+        internal QueueObserver(IManualResetNotifier resetNotifier, IQueueMessageReader<TMessage> messageReader)
         {
             if (resetNotifier == null) 
                 throw new ArgumentNullException("resetNotifier");
@@ -39,6 +44,7 @@ namespace ReactiveAzure
         /// <summary>
         /// Signals that notifications should be raised.
         /// </summary>
+        /// <remarks>Does affect the notifications being raised, just starts this class acting on them.</remarks>
         internal void BeginNotifications()
         {
             _sendNotifications = true;
@@ -47,6 +53,7 @@ namespace ReactiveAzure
         /// <summary>
         /// Signals that notifications should not be raised.
         /// </summary>
+        /// <remarks>Does affect the notifications being raised, just stops this class acting on them.</remarks>
         internal void EndNotifications()
         {
             _sendNotifications = false;
@@ -58,7 +65,7 @@ namespace ReactiveAzure
                 throw new ArgumentNullException("e");
             if (_sendNotifications)
             {
-                ITypedQueueMessage<TMessage> message = _messageReader.GetMessage();
+                var message = _messageReader.GetMessage();
                 if (message != null)
                 {
                     OnMessageReceived(message);
@@ -67,7 +74,7 @@ namespace ReactiveAzure
             e.Reset();
         }
 
-        private void OnMessageReceived(ITypedQueueMessage<TMessage> message)
+        private void OnMessageReceived(TypedMessage<TMessage> message)
         {
             if (message == null) 
                 throw new ArgumentNullException("message");
@@ -79,12 +86,17 @@ namespace ReactiveAzure
             }
         }
 
-        internal IObservable<ITypedQueueMessage<TMessage>> AsObservable()
+        /// <summary>
+        /// Converts the <see cref="QueueObserver{TMessage}"/> into an <see cref="IObservable{T}"/>.
+        /// </summary>
+        /// <returns></returns>
+        internal IObservable<TypedMessage<TMessage>> AsObservable()
         {
+            //Use the Observable.FromEvent helper so that I don't need to implement the IObservable interface for myself.
             var observable =
                 Observable.FromEvent<MessageReceivedHandler<TMessage>,
-                                     ITypedQueueMessage<TMessage>>(ev => MessageReceived += ev,
-                                                                   ev => MessageReceived -= ev);
+                                     TypedMessage<TMessage>>(ev => MessageReceived += ev,
+                                                             ev => MessageReceived -= ev);
             return observable;
         }
 

@@ -4,6 +4,9 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace ReactiveAzure
 {
+    /// <summary>
+    /// Uses an <see cref="XmlSerializer"/> internally to serialize the given message.
+    /// </summary>
     public class XmlMessageSerializer<T> : IMessageSerializer<T>
     {
         public CloudQueueMessage SerializeMessage(T value)
